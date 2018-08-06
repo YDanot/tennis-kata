@@ -13,12 +13,12 @@ public class SetTest {
 
     @Before
     public void setup() {
-        set = new Set();
+        set = new Set(0, 0);
     }
 
     @Test
     public void score_should_be_0_0_on_a_new_set() {
-        Assertions.assertThat(new Set().call()).isEqualTo("0 - 0");
+        Assertions.assertThat(new Set(0, 0).call()).isEqualTo("0 - 0");
     }
 
     @Test
@@ -106,7 +106,7 @@ public class SetTest {
 
     private void winGames(Player player, int nbGame) {
         for (int i = 0; i < nbGame; i++) {
-            set.winGame(player);
+            set = set.winGame(player);
         }
     }
 }

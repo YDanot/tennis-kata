@@ -2,24 +2,29 @@ package tennis;
 
 public class Set {
 
-    private int player1score;
+    private final int player1score;
 
-    private int player2score;
+    private final int player2score;
+
+    public Set(int player1score, int player2score) {
+        this.player1score = player1score;
+        this.player2score = player2score;
+    }
 
     public String call() {
         return player1score + " - " + player2score;
     }
 
-    public void winGame(Player player) {
+    public Set winGame(Player player) {
         if (over()){
             throw new IllegalStateException("Set is over, you cannot win any game");
         }
 
         if (player == Player.PLAYER_1) {
-            player1score++;
-        } else {
-            player2score++;
+            return new Set(player1score+1, player2score);
         }
+            return new Set(player1score, player2score+1);
+
     }
 
     public Player winner() {
