@@ -64,7 +64,7 @@ public class Game {
         return new Game(player1Score, next(player2Score));
     }
 
-    private Point scoreOf(Player player) {
+    public Point scoreOf(Player player) {
         return PLAYER_2.equals(player) ? player2Score : player1Score;
     }
 

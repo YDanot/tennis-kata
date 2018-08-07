@@ -2,5 +2,17 @@ package tennis;
 
 
 public enum Point {
-    LOVE, FIFTEEN, THIRTY, FORTY, ADVANTAGE;
+    LOVE("00"), FIFTEEN("15"), THIRTY("30"), FORTY("40"), ADVANTAGE("AD");
+
+    Point(String billboardRepresentation) {
+        this.billboardRepresentation = billboardRepresentation;
+    }
+
+    public String billboardRepresentation(){
+        return billboardRepresentation;
+    }
+
+    private final String billboardRepresentation;
+
+
 }

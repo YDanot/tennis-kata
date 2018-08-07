@@ -2,9 +2,13 @@ package tennis;
 
 public class Set {
 
-    private final int player1score;
+    public final int player1score;
 
-    private final int player2score;
+    public final int player2score;
+
+    public Set(){
+        this(0,0);
+    }
 
     public Set(int player1score, int player2score) {
         this.player1score = player1score;
