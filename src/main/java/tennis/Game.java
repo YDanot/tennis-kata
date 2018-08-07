@@ -32,7 +32,7 @@ public class Game {
         return point(player);
     }
 
-    private boolean isGamePoint(Player player) {
+    protected boolean isGamePoint(Player player) {
         Point playerScore = scoreOf(player);
         Point opponentScore = scoreOf(opponent(player));
         return playerScore.equals(ADVANTAGE)
@@ -45,11 +45,11 @@ public class Game {
         return new Game(FORTY, FORTY);
     }
 
-    private Game game(Player winner) {
+    protected Game game(Player winner) {
         return new Game(player1Score, player2Score, winner);
     }
 
-    private Game point(Player winner) {
+    protected Game point(Player winner) {
         if (scoreOf(opponent(winner)).equals(ADVANTAGE)) {
             return deuce();
         }
@@ -64,11 +64,15 @@ public class Game {
         return new Game(player1Score, next(player2Score));
     }
 
-    public Point scoreOf(Player player) {
+    private Point scoreOf(Player player) {
         return PLAYER_2.equals(player) ? player2Score : player1Score;
     }
 
-    private Player opponent(Player player) {
+    public String billboardScoreOf(Player player) {
+        return scoreOf(player).billboardRepresentation();
+    }
+
+    protected Player opponent(Player player) {
         return player.equals(Player.PLAYER_2) ? PLAYER_1 : Player.PLAYER_2;
     }
 

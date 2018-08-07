@@ -87,7 +87,17 @@ public class SetTest {
     }
 
     @Test
-    public void set_should_not_be_over_on_7_6() {
+    public void set_should_be_over_on_7_6() {
+        winGames(PLAYER_1, 5);
+        winGames(PLAYER_2, 6);
+        winGames(PLAYER_1, 2);
+
+        Assertions.assertThat(set.over()).isTrue();
+    }
+
+    @Test
+    public void last_set_should_not_be_over_on_7_6() {
+        set = new LastSet();
         winGames(PLAYER_1, 5);
         winGames(PLAYER_2, 6);
         winGames(PLAYER_1, 2);

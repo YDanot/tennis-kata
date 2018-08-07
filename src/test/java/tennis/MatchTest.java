@@ -1,6 +1,5 @@
 package tennis;
 
-import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -89,18 +88,62 @@ public class MatchTest {
     }
 
     @Test
-    public void classic_matvch_should_be_over_when_player_1_win_2_first_sets() {
+    public void last_set_should_not_have_tie_break() {
+        winABlankSet(PLAYER_1);
         winABlankSet(PLAYER_2);
+
+        winABlankGame(PLAYER_1);
+        winABlankGame(PLAYER_1);
+        winABlankGame(PLAYER_1);
+        winABlankGame(PLAYER_1);
+        winABlankGame(PLAYER_1);
+
+        winABlankGame(PLAYER_2);
+        winABlankGame(PLAYER_2);
+        winABlankGame(PLAYER_2);
+        winABlankGame(PLAYER_2);
+        winABlankGame(PLAYER_2);
+        winABlankGame(PLAYER_2);
+
+        winABlankGame(PLAYER_1);
+        winABlankGame(PLAYER_1);
+        winABlankGame(PLAYER_2);
+
         assertThat(render()).isEqualTo(
-                "| 0 | 0 - 00" + "\n" +
-                        "| 6 | 0 - 00");
+                "| 6 | 0 | 7 - 00" + "\n" +
+                "| 0 | 6 | 7 - 00");
     }
 
     @Test
-    public void a_classic_match_should_be_over_when_a_player_wins_3_sets(){
+    public void match_should_be_over_when_last_set_score_is_8_6() {
         winABlankSet(PLAYER_1);
         winABlankSet(PLAYER_2);
+
+        winABlankGame(PLAYER_1);
+        winABlankGame(PLAYER_1);
+        winABlankGame(PLAYER_1);
+        winABlankGame(PLAYER_1);
+        winABlankGame(PLAYER_1);
+
+        winABlankGame(PLAYER_2);
+        winABlankGame(PLAYER_2);
+        winABlankGame(PLAYER_2);
+        winABlankGame(PLAYER_2);
+        winABlankGame(PLAYER_2);
+        winABlankGame(PLAYER_2);
+
+        winABlankGame(PLAYER_1);
+        winABlankGame(PLAYER_1);
+        winABlankGame(PLAYER_1);
+
+        match.play();
+        assertThat(match.over()).isTrue();
+    }
+
+    @Test
+    public void a_classic_match_should_be_over_when_a_player_wins_2_sets(){
         winABlankSet(PLAYER_1);
+        winABlankSet(PLAYER_2);
         winABlankSet(PLAYER_1);
         match.play();
         assertThat(match.over()).isTrue();
@@ -110,7 +153,6 @@ public class MatchTest {
     public void player_should_not_be_able_to_score_after_winning_a_match() {
         winABlankSet(PLAYER_1);
         winABlankSet(PLAYER_2);
-        winABlankSet(PLAYER_1);
         winABlankSet(PLAYER_1);
         winAPoint(PLAYER_1);
         match.play();

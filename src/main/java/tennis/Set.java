@@ -25,19 +25,30 @@ public class Set {
         }
 
         if (player == Player.PLAYER_1) {
-            return new Set(player1score+1, player2score);
+            return startNewGame(player1score + 1, player2score);
         }
-            return new Set(player1score, player2score+1);
+            return startNewGame(player1score, player2score+1);
 
+    }
+
+    protected Set startNewGame(int player1score, int player2score) {
+        return new Set(player1score, player2score);
     }
 
     public Player winner() {
 
-        if (player1score >=6 && player1score - player2score >=2) {
+        if (player1score == 7 && player2score == 6){
+            return Player.PLAYER_1;
+        }
+        if (player1score == 6 && player2score == 7){
+            return Player.PLAYER_2;
+        }
+
+        if (player1score >= 6 && player1score - player2score >=2) {
             return Player.PLAYER_1;
         }
 
-        if (player2score >=6 && player2score - player1score >=2) {
+        if (player2score >= 6 && player2score - player1score >=2) {
             return Player.PLAYER_2;
         }
 

@@ -23,7 +23,7 @@ public class Match {
     }
 
     public static Match classic(){
-         return new Match(new ArrayList<>(), new Game(), new Set(), new ArrayList<>(), 3);
+         return new Match(new ArrayList<>(), new Game(), new Set(), new ArrayList<>(), 2);
     }
 
     public void point(Player player) {
@@ -43,7 +43,12 @@ public class Match {
                 currentSet = currentSet.winGame(currentGame.winner());
                 if (currentSet.over()){
                     finishedSets.add(currentSet);
-                    currentSet = new Set();
+                    if (finishedSets.size() == 2){
+                        currentSet = new LastSet();
+                    }
+                    else {
+                        currentSet = new Set();
+                    }
                 }
                 currentGame = new Game();
             }
@@ -61,8 +66,8 @@ public class Match {
             player2Score += "| "+set.player2score + " ";
         }
 
-        player1Score += "| "+currentSet.player1score+" - "+ currentGame.scoreOf(PLAYER_1).billboardRepresentation();
-        player2Score += "| "+currentSet.player2score+" - "+ currentGame.scoreOf(PLAYER_2).billboardRepresentation();
+        player1Score += "| "+currentSet.player1score+" - "+ currentGame.billboardScoreOf(PLAYER_1);
+        player2Score += "| "+currentSet.player2score+" - "+ currentGame.billboardScoreOf(PLAYER_2);
 
         return  player1Score + "\n" + player2Score;
     }
