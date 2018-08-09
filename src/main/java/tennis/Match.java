@@ -26,11 +26,11 @@ public class Match {
         this(new ArrayList<>(), new Game(), new Set(), new ArrayList<>(),winningSetNumber);
     }
 
-    public static Match classic(){
+    static Match classic(){
         return new Match(2);
     }
 
-    public static Match grandslam(){
+    static Match grandslam(){
         return new Match(3);
     }
 
@@ -38,7 +38,7 @@ public class Match {
         points.add(player);
     }
 
-    public Match play() {
+    Match play() {
         Match match = this;
         for (Player point : points) {
             if (over()){
@@ -93,7 +93,7 @@ public class Match {
         return  player1Score + "\n" + player2Score;
     }
 
-    public boolean over(){
+    boolean over(){
         return setsWinBy(PLAYER_1) == winningSetNumber || setsWinBy(PLAYER_2) == winningSetNumber;
     }
 

@@ -6,11 +6,11 @@ public class Set {
 
     public final int player2score;
 
-    public Set(){
+    Set(){
         this(0,0);
     }
 
-    public Set(int player1score, int player2score) {
+    Set(int player1score, int player2score) {
         this.player1score = player1score;
         this.player2score = player2score;
     }
@@ -19,7 +19,7 @@ public class Set {
         return player1score + " - " + player2score;
     }
 
-    public Set winGame(Player player) {
+    Set winGame(Player player) {
         if (over()){
             throw new IllegalStateException("Set is over, you cannot win any game");
         }
@@ -55,7 +55,7 @@ public class Set {
         return null;
     }
 
-    public boolean over() {
+    boolean over() {
         return winner() != null;
     }
 }

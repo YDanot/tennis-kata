@@ -2,7 +2,6 @@ package tennis2;
 
 import static tennis2.Player.PLAYER_2;
 import static tennis2.TieBreak.Point.SIX;
-import static tennis2.TieBreak.Point.ZERO;
 
 public class TieBreak extends Game {
 
@@ -18,7 +17,7 @@ public class TieBreak extends Game {
 
     @Override
     protected boolean isGamePoint(Player player) {
-        return scoreOf(player).greatherThanOrEqualsTo(SIX) && scoreOf(player).gapWith(scoreOf(opponent(player))) > 0;
+        return scoreOf(player).greatherThanOrEqualsTo(SIX) && scoreOf(player).gapWith(scoreOf(opponent(player))) >= 1;
     }
 
     private Point scoreOf(Player player) {
@@ -62,7 +61,6 @@ public class TieBreak extends Game {
     }
 
     static class Point {
-        static final Point ZERO = new Point();
         static final Point SIX = new Point(6);
         private final int value;
 

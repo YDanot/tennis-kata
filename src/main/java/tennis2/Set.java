@@ -8,7 +8,7 @@ public class Set {
 
     private final List<Game> games;
 
-    public Set() {
+    Set() {
         this(Lists.list(new Game()));
     }
 
@@ -28,7 +28,7 @@ public class Set {
         return (int) games.stream().filter(g -> g.winner() == Player.PLAYER_2).count();
     }
 
-    public void startNewGame() {
+    void startNewGame() {
         if (over()){
             throw new IllegalStateException("Set is over, you cannot win any game");
         }
@@ -58,11 +58,11 @@ public class Set {
         return null;
     }
 
-    public boolean over() {
+    boolean over() {
         return winner() != null;
     }
 
-    public Game currentGame() {
+    Game currentGame() {
         return games.get(games.size() - 1);
     }
 

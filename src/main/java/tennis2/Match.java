@@ -22,11 +22,11 @@ public class Match {
         this(winningSetNumber, Lists.list(new Set()));
     }
 
-    public static Match classic() {
+    static Match classic() {
         return new Match(2);
     }
 
-    public static Match grandslam() {
+    static Match grandSlam() {
         return new Match(3);
     }
 
@@ -67,7 +67,7 @@ public class Match {
         return (int) sets.stream().filter(s -> s.winner() == player).count();
     }
 
-    public String billboardPrint() {
+    String billboardPrint() {
         String player1Score = "";
         String player2Score = "";
 
@@ -87,7 +87,7 @@ public class Match {
         return player1Score + "\n" + player2Score;
     }
 
-    public boolean over() {
+    boolean over() {
         return setsWonBy(PLAYER_1) == winningSetNumber || setsWonBy(PLAYER_2) == winningSetNumber;
     }
 

@@ -42,10 +42,6 @@ public class Game {
                 && !opponentScore.equals(FORTY));
     }
 
-    private Game deuce() {
-        return new Game(FORTY, FORTY);
-    }
-
     protected void game(Player winner) {
         this.winner = winner;
     }
@@ -83,7 +79,7 @@ public class Game {
         return scoreOf(player).billboardRepresentation();
     }
 
-    protected Player opponent(Player player) {
+    Player opponent(Player player) {
         return player.equals(PLAYER_2) ? PLAYER_1 : PLAYER_2;
     }
 
@@ -118,7 +114,7 @@ public class Game {
         return player1Score + " - " + player2Score;
     }
 
-    public boolean isOver() {
+    boolean isOver() {
         return winner() != null;
     }
 }

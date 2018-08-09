@@ -6,7 +6,7 @@ public class LastSet extends Set {
         super(player1score, player2score);
     }
 
-    public LastSet() {
+    LastSet() {
         super();
     }
 

@@ -72,7 +72,7 @@ public class Game {
         return scoreOf(player).billboardRepresentation();
     }
 
-    protected Player opponent(Player player) {
+    Player opponent(Player player) {
         return player.equals(Player.PLAYER_2) ? PLAYER_1 : Player.PLAYER_2;
     }
 

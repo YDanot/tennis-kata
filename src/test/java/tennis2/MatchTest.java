@@ -149,7 +149,7 @@ public class MatchTest {
 
     @Test
     public void a_grandslam_match_should_not_be_over_when_a_player_wins_2_sets(){
-        match = Match.grandslam();
+        match = Match.grandSlam();
         winABlankSet(PLAYER_1);
         winABlankSet(PLAYER_2);
         winABlankSet(PLAYER_1);
@@ -158,7 +158,7 @@ public class MatchTest {
 
     @Test
     public void a_grandslam_match_should_be_over_when_a_player_wins_3_sets(){
-        match = Match.grandslam();
+        match = Match.grandSlam();
         winABlankSet(PLAYER_1);
         winABlankSet(PLAYER_2);
         winABlankSet(PLAYER_1);
