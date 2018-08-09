@@ -106,4 +106,8 @@ public class Game {
 
         return player1Score + " - " + player2Score;
     }
+
+    boolean isOver() {
+        return winner() != null;
+    }
 }

@@ -22,8 +22,16 @@ public class Match {
         this.winningSetNumber = winningSetNumber;
     }
 
+    private Match(int winningSetNumber){
+        this(new ArrayList<>(), new Game(), new Set(), new ArrayList<>(),winningSetNumber);
+    }
+
     public static Match classic(){
-         return new Match(new ArrayList<>(), new Game(), new Set(), new ArrayList<>(), 2);
+        return new Match(2);
+    }
+
+    public static Match grandslam(){
+        return new Match(3);
     }
 
     public void point(Player player) {
@@ -31,33 +39,46 @@ public class Match {
     }
 
     public Match play() {
-        Game currentGame = this.currentGame;
-        Set currentSet = this.currentSet;
-
+        Match match = this;
         for (Player point : points) {
             if (over()){
                 throw new IllegalStateException("Match is over, you cannot play anymore");
             }
-            currentGame = currentGame.winPoint(point);
-            if (currentGame.winner() != null){
-                currentSet = currentSet.winGame(currentGame.winner());
-                if (currentSet.over()){
-                    finishedSets.add(currentSet);
-                    if (finishedSets.size() == 2){
-                        currentSet = new LastSet();
-                    }
-                    else {
-                        currentSet = new Set();
-                    }
-                }
-                currentGame = new Game();
-            }
+            match = match.winPoint(point);
         }
-        return new Match(new ArrayList<>(), currentGame, currentSet, finishedSets, winningSetNumber);
+
+        return new Match(new ArrayList<>(), match.currentGame, match.currentSet, match.finishedSets, match.winningSetNumber);
     }
 
+    private Match winPoint(Player player) {
+        Match match = new Match(points, currentGame.winPoint(player), currentSet, finishedSets, winningSetNumber);
+        if (match.currentGame.isOver()){
+            match = match.winGame(player);
+        }
+        return match;
+    }
 
-    String print() {
+    private Match winGame(Player player) {
+        Match match = new Match(points, currentGame, currentSet.winGame(player), finishedSets, winningSetNumber);
+        if (match.currentSet.over()){
+            match = match.startNewSet();
+        }
+        return match.startNewGame();
+    }
+
+    private Match startNewGame() {
+        return new Match(points, new Game(), currentSet, finishedSets,winningSetNumber);
+    }
+
+    private Match startNewSet() {
+        finishedSets.add(currentSet);
+        if (finishedSets.size() == winningSetNumber * 2 - 2){
+            return new Match(points, currentGame, new LastSet(), finishedSets,winningSetNumber);
+        }
+        return new Match(points, currentGame, new Set(), finishedSets,winningSetNumber);
+    }
+
+    String billboardPrint() {
         String player1Score = "";
         String player2Score = "";
 
