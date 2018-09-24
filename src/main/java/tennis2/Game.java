@@ -34,26 +34,19 @@ public class Game {
     }
 
     protected boolean isGamePoint(Player player) {
-        Point playerScore = scoreOf(player);
-        Point opponentScore = scoreOf(opponent(player));
-        return playerScore.equals(ADVANTAGE)
-                || (playerScore.equals(FORTY)
-                && !opponentScore.equals(ADVANTAGE)
-                && !opponentScore.equals(FORTY));
+        return scoreOf(player).equals(ADVANTAGE)
+                || (scoreOf(player).equals(FORTY)
+                && !scoreOf(opponent(player)).equals(ADVANTAGE)
+                && !scoreOf(opponent(player)).equals(FORTY));
     }
 
     protected void game(Player winner) {
         this.winner = winner;
     }
 
-    private void winPoint(Player winner) {
+    protected void winPoint(Player winner) {
         if (scoreOf(opponent(winner)).equals(ADVANTAGE)) {
-            if (winner == PLAYER_2) {
-                this.player1Score = FORTY;
-            } else {
-                player2Score = FORTY;
-            }
-
+            deuce();
         } else {
             if (winner == PLAYER_2) {
                 pointPlayer2();
@@ -61,6 +54,11 @@ public class Game {
                 pointPlayer1();
             }
         }
+    }
+
+    private void deuce() {
+        player1Score = FORTY;
+        player2Score = FORTY;
     }
 
     private void pointPlayer1() {

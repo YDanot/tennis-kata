@@ -33,12 +33,10 @@ public class Game {
     }
 
     protected boolean isGamePoint(Player player) {
-        Point playerScore = scoreOf(player);
-        Point opponentScore = scoreOf(opponent(player));
-        return playerScore.equals(ADVANTAGE)
-                || (playerScore.equals(FORTY)
-                    && !opponentScore.equals(ADVANTAGE)
-                    && !opponentScore.equals(FORTY));
+        return scoreOf(player).equals(ADVANTAGE)
+                || (scoreOf(player).equals(FORTY)
+                    && !scoreOf(opponent(player)).equals(ADVANTAGE)
+                    && !scoreOf(opponent(player)).equals(FORTY));
     }
 
     private Game deuce() {

@@ -9,10 +9,14 @@ public class TieBreak extends Game {
     private Point player2Score;
     private Player winner;
 
-    private TieBreak(Point player1Score, Point player2Score, Player winner) {
+    public TieBreak(Point player1Score, Point player2Score, Player winner) {
         this.player1Score = player1Score;
         this.player2Score = player2Score;
         this.winner = winner;
+    }
+
+    public TieBreak() {
+        this(new Point(), new Point(), null);
     }
 
     @Override
@@ -20,12 +24,17 @@ public class TieBreak extends Game {
         return scoreOf(player).greatherThanOrEqualsTo(SIX) && scoreOf(player).gapWith(scoreOf(opponent(player))) >= 1;
     }
 
+    @Override
+    protected void game(Player winner) {
+        this.winner = winner;
+    }
+
     private Point scoreOf(Player player) {
         return PLAYER_2.equals(player) ? player2Score : player1Score;
     }
 
     @Override
-    public void point(Player winner) {
+    public void winPoint(Player winner) {
         if (winner == PLAYER_2) {
             pointPlayer2();
         } else {

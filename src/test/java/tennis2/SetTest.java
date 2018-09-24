@@ -85,7 +85,8 @@ public class SetTest {
     public void set_should_be_over_on_7_6() {
         winGames(PLAYER_1, 5);
         winGames(PLAYER_2, 6);
-        winGames(PLAYER_1, 2);
+        winGames(PLAYER_1, 1);
+        winTieBreak(PLAYER_1);
 
         Assertions.assertThat(set.over()).isTrue();
     }
@@ -113,6 +114,16 @@ public class SetTest {
         set.currentGame().point(player);
         if(!set.over())
             set.startNewGame();
+    }
+
+    private void winTieBreak(Player player) {
+        set.currentGame().point(player);
+        set.currentGame().point(player);
+        set.currentGame().point(player);
+        set.currentGame().point(player);
+        set.currentGame().point(player);
+        set.currentGame().point(player);
+        set.currentGame().point(player);
     }
 
     private void winGames(Player player, int nbGame) {

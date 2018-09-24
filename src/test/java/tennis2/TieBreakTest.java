@@ -2,12 +2,10 @@ package tennis2;
 
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
-import tennis.Game;
-import tennis.Player;
-import tennis.TieBreak;
 
-import static tennis.Player.PLAYER_1;
-import static tennis.Player.PLAYER_2;
+
+import static tennis2.Player.PLAYER_1;
+import static tennis2.Player.PLAYER_2;
 
 public class TieBreakTest {
 
@@ -145,6 +143,6 @@ public class TieBreakTest {
     }
 
     private void point(Player player) {
-        game = game.winPoint(player);
+        game.point(player);
     }
 }

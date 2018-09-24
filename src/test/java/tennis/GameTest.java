@@ -1,6 +1,7 @@
 package tennis;
 
 import org.assertj.core.api.Assertions;
+import org.junit.Before;
 import org.junit.Test;
 
 import static tennis.Player.PLAYER_1;
@@ -8,7 +9,12 @@ import static tennis.Player.PLAYER_2;
 
 public class GameTest {
 
-    private Game game = new Game();
+    private Game game;
+
+    @Before
+    public void setup() {
+        game = new Game();
+    }
 
     @Test
     public void should_score_be_love_all_on_a_new_game() {

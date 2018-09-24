@@ -36,7 +36,7 @@ public class TieBreak extends Game {
 
     @Override
     protected boolean isGamePoint(Player player) {
-        return scoreOf(player).greatherThanOrEqualsTo(SIX) && scoreOf(player).gapWith(scoreOf(opponent(player))) > 0;
+        return scoreOf(player).greatherThanOrEqualsTo(SIX) && scoreOf(player).gapWith(scoreOf(opponent(player))) >= 1;
     }
 
     private Point scoreOf(Player player) {

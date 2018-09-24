@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Set {
 
-    private final List<Game> games;
+    protected final List<Game> games;
 
     Set() {
         this(Lists.list(new Game()));
@@ -32,7 +32,12 @@ public class Set {
         if (over()){
             throw new IllegalStateException("Set is over, you cannot win any game");
         }
-        games.add(new Game());
+        if (player1score() == 6 && player2score() == 6){
+            games.add(new TieBreak());
+        }
+        else{
+            games.add(new Game());
+        }
     }
 
     public Player winner() {
